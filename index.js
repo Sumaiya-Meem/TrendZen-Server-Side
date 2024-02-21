@@ -26,6 +26,7 @@ async function run() {
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     const userCollection = client.db("TrendZenDB").collection("users");
+    const productCollection = client.db("TrendZenDB").collection("products");
 
     // POST > User
     app.post('/users',async(req,res)=>{
@@ -34,6 +35,12 @@ async function run() {
         res.send(result)
     })
     
+    // POST > Product
+    app.post('/products',async(req,res)=>{
+        const product = req.body;
+        const result =await productCollection.insertOne(product);
+        res.send(result)
+    })
 
 
 
