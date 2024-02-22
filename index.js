@@ -48,6 +48,10 @@ async function run() {
         const result =await summerCollection.find().toArray();
         res.send(result);
     })
+    app.get('/products',async(req,res)=>{
+        const result =await productCollection.find().toArray();
+        res.send(result);
+    })
 
 
 
