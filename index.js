@@ -28,6 +28,7 @@ async function run() {
     const userCollection = client.db("TrendZenDB").collection("users");
     const productCollection = client.db("TrendZenDB").collection("products");
     const summerCollection = client.db("TrendZenDB").collection("summer");
+    const myCartCollection = client.db("TrendZenDB").collection("myCart");
 
     // POST > User
     app.post('/users',async(req,res)=>{
@@ -40,6 +41,13 @@ async function run() {
     app.post('/products',async(req,res)=>{
         const product = req.body;
         const result =await productCollection.insertOne(product);
+        res.send(result)
+    })
+
+    //POST > Cart
+    app.post('/myCart',async(req,res)=>{
+        const cart = req.body;
+        const result =await myCartCollection.insertOne(cart);
         res.send(result)
     })
 
